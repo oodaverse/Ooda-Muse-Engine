@@ -2,6 +2,7 @@ import React from 'react';
 import { Sparkles, Users, BookOpen, Settings, Plus, MessageSquare } from 'lucide-react';
 import { getCharacters, getNodes } from '../services/storage';
 import { ViewType } from '../types';
+import logoUrl from '../branding.jpg';
 
 interface DashboardProps {
   onNavigate: (view: ViewType, id?: string) => void;
@@ -15,10 +16,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     <div className="flex-1 overflow-y-auto bg-gradient-to-br from-slate-950 via-slate-900 to-black">
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
-        <div className="text-center space-y-2 mb-8">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-slate-300 bg-clip-text text-transparent">
-            Dreamweaver Oracle
-          </h1>
+        <div className="text-center space-y-3 mb-8">
+          <div className="flex items-center justify-center gap-3">
+            <img src={logoUrl} alt="Ooda Muse Engine logo" className="w-12 h-12" />
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-slate-300 bg-clip-text text-transparent">
+              Ooda Muse Engine
+            </h1>
+          </div>
           <p className="text-slate-400 text-lg">Your AI-Powered Roleplay Engine</p>
         </div>
 
@@ -151,7 +155,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
         {characters.length === 0 && (
           <div className="bg-gray-800/50 backdrop-blur border border-gray-700/50 rounded-lg p-8 text-center">
             <Sparkles className="w-16 h-16 mx-auto mb-4 text-purple-400" />
-            <h2 className="text-2xl font-bold mb-2 text-white">Welcome to Dreamweaver Oracle!</h2>
+            <h2 className="text-2xl font-bold mb-2 text-white">Welcome to Ooda Muse Engine!</h2>
             <p className="text-gray-400 mb-6 max-w-md mx-auto">
               Get started by creating your first character or importing existing ones from ChubAI or SillyTavern formats.
             </p>

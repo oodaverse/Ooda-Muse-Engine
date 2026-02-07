@@ -54,11 +54,10 @@ export const OracleViewer: React.FC<OracleViewerProps> = ({ item, onClose }) => 
     }
   }, [item.type, mediaUrl]);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (e.target === containerRef.current || (e.target as HTMLElement).closest('.oracle-drag-handle')) {
-      setIsDragging(true);
-      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
-    }
+  const handleDragStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
   };
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -91,7 +90,7 @@ export const OracleViewer: React.FC<OracleViewerProps> = ({ item, onClose }) => 
         document.removeEventListener('mouseup', handleMouseUp);
       };
     }
-  }, [isDragging, isResizing, dragStart, position, resizeStart]);
+  }, [isDragging, isResizing]);
 
   return (
     <div
@@ -104,10 +103,12 @@ export const OracleViewer: React.FC<OracleViewerProps> = ({ item, onClose }) => 
         height: isMinimized ? 'auto' : `${size.height}px`,
         zIndex: 9999
       }}
-      onMouseDown={handleMouseDown}
     >
       {/* Header */}
-      <div className="oracle-drag-handle bg-slate-800/90 backdrop-blur-xl border-b border-slate-700/50 px-4 py-2 flex items-center justify-between cursor-move select-none">
+      <div 
+        className="oracle-drag-handle bg-slate-800/90 backdrop-blur-xl border-b border-slate-700/50 px-4 py-2 flex items-center justify-between cursor-move select-none"
+        onMouseDown={handleDragStart}
+      >
         <div className="flex items-center gap-2">
           <Move className="w-4 h-4 text-cyan-400" />
           <span className="text-sm font-semibold text-white truncate max-w-[200px]">
@@ -138,7 +139,7 @@ export const OracleViewer: React.FC<OracleViewerProps> = ({ item, onClose }) => 
 
       {/* Media Content */}
       {!isMinimized && (
-        <div className="relative w-full h-full bg-black">
+        <div className="relative w-full h-full bg-black" style={{ height: 'calc(100% - 42px)' }}>
           {item.type === 'video' ? (
             <video
               ref={mediaRef as React.RefObject<HTMLVideoElement>}
@@ -171,9 +172,10 @@ export const OracleViewer: React.FC<OracleViewerProps> = ({ item, onClose }) => 
 
           {/* Resize Handle */}
           <div
-            className="absolute bottom-0 right-0 w-6 h-6 cursor-nwse-resize hover:opacity-100 opacity-50 transition-opacity"
+            className="absolute bottom-0 right-0 w-8 h-8 cursor-nwse-resize hover:opacity-100 opacity-50 transition-opacity z-10 flex items-center justify-center"
             onMouseDown={(e) => {
               e.stopPropagation();
+              e.preventDefault();
               setIsResizing(true);
               setResizeStart({
                 width: size.width,
@@ -183,9 +185,10 @@ export const OracleViewer: React.FC<OracleViewerProps> = ({ item, onClose }) => 
               });
             }}
           >
-            <svg className="w-full h-full text-cyan-500" viewBox="0 0 16 16">
+            <svg className="w-5 h-5 text-cyan-400 drop-shadow-lg" viewBox="0 0 16 16">
               <path d="M16 0 L16 16 L0 16 Z" fill="currentColor" opacity="0.3" />
-              <path d="M10 6 L10 10 L6 10" stroke="white" strokeWidth="1.5" fill="none" />
+              <line x1="10" y1="6" x2="10" y2="10" stroke="white" strokeWidth="2" />
+              <line x1="6" y1="10" x2="10" y2="10" stroke="white" strokeWidth="2" />
             </svg>
           </div>
         </div>

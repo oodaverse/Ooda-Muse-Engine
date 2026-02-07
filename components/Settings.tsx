@@ -4,6 +4,7 @@ import { getSettings, saveSettings } from '../services/storage';
 import { AppSettings, ViewType } from '../types';
 import { OPENROUTER_MODEL_OPTIONS, XAI_MODEL_OPTIONS, NSFW_ROLEPLAY_MODELS, getAllModelOptions } from '../constants';
 import { ModelTester } from './ModelTester';
+import { THEME_PRESETS, DEFAULT_THEME_ID } from '../themePresets';
 
 interface SettingsProps {
   onNavigate: (view: ViewType) => void;
@@ -295,13 +296,17 @@ export const Settings: React.FC<SettingsProps> = ({ onNavigate }) => {
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">Theme</label>
             <select
-              value={settings.theme}
-              onChange={(e) => setSettings({ ...settings, theme: e.target.value as 'dark' | 'light' })}
+              value={settings.theme || DEFAULT_THEME_ID}
+              onChange={(e) => setSettings({ ...settings, theme: e.target.value })}
               className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-xl text-white focus:outline-none focus:border-cyan-500/50"
             >
-              <option value="dark">Dark</option>
-              <option value="light">Light (Coming Soon)</option>
+              {THEME_PRESETS.map((theme) => (
+                <option key={theme.id} value={theme.id}>{theme.name}</option>
+              ))}
             </select>
+            <p className="text-xs text-slate-500 mt-1">
+              Select a base theme for the app background and accents.
+            </p>
           </div>
         </div>
 
@@ -310,7 +315,7 @@ export const Settings: React.FC<SettingsProps> = ({ onNavigate }) => {
           <h2 className="text-xl font-semibold text-white mb-3">About</h2>
           <div className="text-sm text-slate-400 space-y-2">
             <p><strong className="text-gray-300">Version:</strong> 1.0.0</p>
-            <p><strong className="text-gray-300">Engine:</strong> Dreamweaver Oracle</p>
+            <p><strong className="text-gray-300">Engine:</strong> Ooda Muse Engine</p>
             <p><strong className="text-gray-300">Powered by:</strong> xAI and OpenRouter</p>
             <p><strong className="text-gray-300">Supported Formats:</strong> ChubAI, SillyTavern JSON</p>
           </div>

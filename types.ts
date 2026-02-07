@@ -90,7 +90,7 @@ export interface AppSettings {
   defaultModel: string;
   temperature: number;
   maxTokens: number;
-  theme: 'dark' | 'light';
+  theme: string;
   globalSystemPrompt?: string;
   loreImportanceThreshold?: number;
   autoInjectLore?: boolean;

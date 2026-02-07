@@ -1,4 +1,5 @@
 import { Character, ChatNode, LoreEntry, Lorebook, AppSettings } from '../types';
+import { DEFAULT_THEME_ID } from '../themePresets';
 
 // Storage Keys
 const STORAGE_KEYS = {
@@ -145,7 +146,7 @@ export function getSettings(): AppSettings {
       defaultModel: 'grok-4-1-fast-reasoning',
       temperature: 0.85,
       maxTokens: 2000,
-      theme: 'dark',
+      theme: DEFAULT_THEME_ID,
       globalSystemPrompt: '',
       loreImportanceThreshold: 5,
       autoInjectLore: true,
@@ -162,7 +163,7 @@ export function getSettings(): AppSettings {
     defaultModel: 'grok-4-1-fast-reasoning',
     temperature: 0.85,
     maxTokens: 2000,
-    theme: 'dark',
+    theme: DEFAULT_THEME_ID,
     globalSystemPrompt: '',
     loreImportanceThreshold: 5,
     autoInjectLore: true,
@@ -171,6 +172,9 @@ export function getSettings(): AppSettings {
 
 export function saveSettings(settings: AppSettings): void {
   localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(settings));
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('settings-updated'));
+  }
 }
 
 // --- Utilities ---

@@ -32,8 +32,8 @@ const getProviderConfig = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
         'HTTP-Referer': typeof window !== 'undefined' ? window.location.origin : 'http://localhost',
-        'X-Title': 'Dreamweaver Oracle'
-      }
+        'X-Title': 'Ooda Muse Engine'
+      } as Record<string, string>
     };
   }
 
@@ -46,7 +46,7 @@ const getProviderConfig = () => {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`
-    }
+    } as Record<string, string>
   };
 };
 

@@ -56,7 +56,10 @@ export const NSFW_ROLEPLAY_MODELS: any[] = [
   { id: 'meta-llama/llama-3.1-70b-instruct', name: 'Llama 3.1 70B Instruct', provider: 'openrouter', contextLength: 131072, isNsfw: true, description: 'Open-source model with strong creative capabilities' },
   { id: 'mistralai/mistral-large', name: 'Mistral Large', provider: 'openrouter', contextLength: 128000, isNsfw: true, description: 'European model with nuanced understanding' },
   { id: 'openai/gpt-4-turbo', name: 'GPT-4 Turbo', provider: 'openrouter', contextLength: 128000, isNsfw: false, description: 'OpenAI flagship (limited NSFW compliance)' },
-  { id: 'openai/gpt-4o', name: 'GPT-4o', provider: 'openrouter', contextLength: 128000, isNsfw: false, description: 'Multimodal GPT-4 (limited NSFW compliance)' }
+  { id: 'openai/gpt-4o', name: 'GPT-4o', provider: 'openrouter', contextLength: 128000, isNsfw: false, description: 'Multimodal GPT-4 (limited NSFW compliance)' },
+  { id: 'deepseek/deepseek-v3.2', name: 'DeepSeek V3.2', provider: 'openrouter', contextLength: 64000, isNsfw: true, description: 'Advanced reasoning model with strong technical capabilities' },
+  { id: 'xiaomi/mimo-v2-flash', name: 'Mimo V2 Flash', provider: 'openrouter', contextLength: 32768, isNsfw: true, description: 'Fast and efficient model with multilingual support' },
+  { id: 'minimax/minimax-m2-her', name: 'MiniMax M2 Her', provider: 'openrouter', contextLength: 16384, isNsfw: true, description: 'Specialized model for conversational scenarios' }
 ];
 
 export const AI_MODES: AiMode[] = [

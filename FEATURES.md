@@ -1,7 +1,7 @@
-# Dreamweaver Oracle - Advanced Features Documentation
+# Ooda Muse Engine - Advanced Features Documentation
 
 ## Overview
-Dreamweaver Oracle is a sophisticated AI-powered roleplay engine built with React 19, TypeScript, and xAI's Grok API. This document covers the advanced features implemented.
+Ooda Muse Engine is a sophisticated AI-powered roleplay engine built with React 19, TypeScript, and xAI's Grok API. This document covers the advanced features implemented.
 
 ## New Features
 
@@ -266,4 +266,4 @@ sendMessageToCharacter(character: Character, messages: Message[], activeNodeId: 
 Built with React 19, TypeScript, Vite, Tailwind CSS, xAI Grok API, Plyr, and IndexedDB.
 
 ---
-Dreamweaver Oracle © 2024
+Ooda Muse Engine © 2024

@@ -802,16 +802,16 @@ const CharacterMediaThumb: React.FC<CharacterMediaThumbProps> = ({ item, onDelet
     let cleanups: Array<() => void> = [];
     if (item.thumbnail) {
       setThumbUrl(item.thumbnail);
-    } else if (item.type === 'image') {
+    } else if (item.type === 'image' && item.blob) {
       const isBlob = item.blob instanceof Blob;
-      const url = isBlob ? URL.createObjectURL(item.blob) : (item.blob as unknown as string);
+      const url = isBlob ? URL.createObjectURL(item.blob as Blob) : (item.blob as unknown as string);
       setThumbUrl(url);
       if (isBlob) cleanups.push(() => URL.revokeObjectURL(url));
     }
 
-    if (item.type === 'video') {
+    if (item.type === 'video' && item.blob) {
       const isBlob = item.blob instanceof Blob;
-      const url = isBlob ? URL.createObjectURL(item.blob) : (item.blob as unknown as string);
+      const url = isBlob ? URL.createObjectURL(item.blob as Blob) : (item.blob as unknown as string);
       setPreviewUrl(url);
       if (isBlob) cleanups.push(() => URL.revokeObjectURL(url));
     }

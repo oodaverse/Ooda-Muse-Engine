@@ -193,7 +193,26 @@ Start with a request, or tap a quick prompt below.`,
                     : 'bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 text-slate-100'
                 }`}
               >
-                <ReactMarkdown remarkPlugins={[remarkGfm]} className="prose prose-invert prose-sm max-w-none">
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]} 
+                  className="prose prose-invert prose-sm max-w-none"
+                  components={{
+                    h1: ({children}) => <h1 className="text-xl font-bold text-white mb-5 mt-8 pb-2.5 border-b-2 border-slate-700/50 first:mt-0">{children}</h1>,
+                    h2: ({children}) => <h2 className="text-lg font-bold text-white mb-4 mt-8 flex items-center gap-2 first:mt-0"><span className="w-1 h-6 bg-gradient-to-b from-cyan-400 to-cyan-600 rounded-full"></span>{children}</h2>,
+                    h3: ({children}) => <h3 className="text-base font-semibold text-slate-100 mb-3 mt-6 first:mt-0">{children}</h3>,
+                    h4: ({children}) => <h4 className="text-sm font-semibold text-slate-200 mb-2.5 mt-5 first:mt-0">{children}</h4>,
+                    p: ({children}) => <p className="leading-[1.75] mb-5 text-slate-300 text-sm last:mb-0">{children}</p>,
+                    ul: ({children}) => <ul className="list-disc list-outside ml-4 mb-5 space-y-2 text-slate-300 marker:text-slate-500">{children}</ul>,
+                    ol: ({children}) => <ol className="list-decimal list-outside ml-4 mb-5 space-y-2 text-slate-300 marker:text-slate-500">{children}</ol>,
+                    li: ({children}) => <li className="pl-1 leading-[1.65]">{children}</li>,
+                    blockquote: ({children}) => <blockquote className="border-l-4 border-cyan-600/50 pl-4 py-2.5 my-5 italic text-slate-400 bg-slate-900/40 rounded-r-lg">{children}</blockquote>,
+                    a: ({href, children}) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-400/30 hover:decoration-cyan-300/50 underline-offset-2 transition-colors">{children}</a>,
+                    hr: () => <hr className="border-slate-700 my-8" />,
+                    strong: ({children}) => <strong className="font-semibold text-white">{children}</strong>,
+                    em: ({children}) => <em className="italic text-slate-200">{children}</em>,
+                    code: ({inline, children}: any) => inline ? <code className="bg-slate-900/80 text-cyan-300 px-1.5 py-0.5 rounded text-xs font-mono border border-slate-700/50">{children}</code> : <code>{children}</code>
+                  }}
+                >
                   {message.content}
                 </ReactMarkdown>
               </div>

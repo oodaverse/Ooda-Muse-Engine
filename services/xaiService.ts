@@ -34,7 +34,7 @@ const getProviderConfig = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
         'HTTP-Referer': typeof window !== 'undefined' ? window.location.origin : 'http://localhost',
-        'X-Title': 'Dreamweaver Oracle'
+        'X-Title': 'Ooda Muse Engine'
       }
     };
   }
@@ -735,7 +735,7 @@ export const sendMessageWithModel = async (
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${OPENROUTER_API_KEY || settings.openrouterApiKey || ''}`,
       'HTTP-Referer': typeof window !== 'undefined' ? window.location.origin : 'http://localhost',
-      'X-Title': 'Dreamweaver Oracle'
+      'X-Title': 'Ooda Muse Engine'
     }
   } : {
     apiKey: XAI_API_KEY || settings.apiKey || '',
@@ -759,7 +759,7 @@ export const testMultipleModels = async (models: ModelTestConfig[], systemPrompt
   const testModel = async (config: ModelTestConfig): Promise<void> => {
     const startTime = Date.now();
     try {
-      const apiConfig = config.provider === 'openrouter' ? { apiKey: OPENROUTER_API_KEY || settings.openrouterApiKey || '', apiUrl: OPENROUTER_API_URL, headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENROUTER_API_KEY || settings.openrouterApiKey || ''}`, 'HTTP-Referer': typeof window !== 'undefined' ? window.location.origin : 'http://localhost', 'X-Title': 'Dreamweaver Oracle' } } : { apiKey: XAI_API_KEY || settings.apiKey || '', apiUrl: XAI_API_URL, headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${XAI_API_KEY || settings.apiKey || ''}` } };
+      const apiConfig = config.provider === 'openrouter' ? { apiKey: OPENROUTER_API_KEY || settings.openrouterApiKey || '', apiUrl: OPENROUTER_API_URL, headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENROUTER_API_KEY || settings.openrouterApiKey || ''}`, 'HTTP-Referer': typeof window !== 'undefined' ? window.location.origin : 'http://localhost', 'X-Title': 'Ooda Muse Engine' } } : { apiKey: XAI_API_KEY || settings.apiKey || '', apiUrl: XAI_API_URL, headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${XAI_API_KEY || settings.apiKey || ''}` } };
       if (!apiConfig.apiKey) throw new Error('API key not configured');
       const response = await fetch(apiConfig.apiUrl, { method: 'POST', headers: apiConfig.headers, body: JSON.stringify({ messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: testPrompt }], model: config.modelId, stream: false, temperature: 0.85, max_tokens: 2000 }) });
       const duration = Date.now() - startTime;
